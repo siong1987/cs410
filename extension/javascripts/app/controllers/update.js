@@ -19,9 +19,12 @@ UpdateController = Backbone.View.extend({
   update: function(e) {
     e.preventDefault();
     category = $('.new-category').val();
-    console.log(category);
+    self.current.category = category;
 
-    //window.close();
+    // create the bookmark
+    Classifier.trainLink(self.current.title, self.current.category, function() {
+      Bookmark.add(self.current);
+    });
   },
 
   render: function() {

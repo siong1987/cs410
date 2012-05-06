@@ -1,18 +1,22 @@
 {
-  "name": "My Bookmarks",
+  "name": "Booksmarter",
   "version": "1.0",
-  "description": "A browser action with a popup dump of all bookmarks, including search, add, edit and delete.",
+  "description": "A bookmarker that is smart enough to categorize your bookmarks.",
+  "icons": { "16": "images/icon16.png",
+             "48": "images/icon48.png",
+             "128": "images/icon128.png" },
   "permissions": [
     "bookmarks", "tabs"
   ],
   "browser_action": {
-      "default_title": "My Bookmarks.",
-      "default_icon": "icon.png",
+      "default_title": "Booksmarter",
+      "default_icon": "images/icon19.png",
       "default_popup": "popup.html"
   },
   "manifest_version": 2,
   "permissions": [
     "tabs",
+    "bookmarks",
     "http://cs410.herokuapp.com/*"
   ]
 }
