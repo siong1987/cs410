@@ -2,8 +2,8 @@ MainController = Backbone.View.extend({
   current: {},
 
   events: {
-    "click .yes-button": "yesButton",
-    "click .no-button": "noButton"
+    "click #yes-button": "yesButton",
+    "click #no-button": "noButton"
   },
 
   yesButton: function(e) {
