@@ -41,7 +41,6 @@ class Category(db.Model):
 
 def getwords(doc):
   splitter=re.compile('\\W*')
-  print doc
   # Split the words by non-alpha characters
   words=[s.lower() for s in splitter.split(doc) 
           if len(s)>2 and len(s)<20]
@@ -235,14 +234,14 @@ def parse_link():
   html = urllib.urlopen(link).read()
   title = Document(html).short_title()
   cl.train(title, category)
-  return '%s' % title
+  return '{"title":"%s"}' % title
 
 @app.route('/parse/title', methods=['POST'])
 def parse_title():
   category = request.form['category']
   title = request.form['title']
   cl.train(title, category)
-  return '%s' % title
+  return '{"title":"%s"}' % title
 
 @app.route('/train/link')
 def train_link():
@@ -314,7 +313,7 @@ def understand_link():
   html = urllib.urlopen(link).read()
   title = Document(html).short_title()
   category=cl.classify(title)
-  return '"{category":"%s"}' % category
+  return '{"category":"%s"}' % category
 
 if __name__ == '__main__':
   # Bind to PORT if defined, otherwise default to 5000.
