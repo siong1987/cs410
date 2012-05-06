@@ -1,0 +1,31 @@
+# CS410 Smarter App
+
+## API
+
+```
+# train link
+POST /parse/link
+params:
+  link: the link of the page
+  category: the category of the link
+  
+# train title
+POST /parse/title
+params:
+  title: the title of the page
+  category: the category of the link
+
+# understand link
+POST /understand/link
+params:
+  link: the link of the page
+return:
+  json: {"category":"category"}
+
+# understand
+POST /understand/title
+params:
+  title: the title of the page
+return:
+  json: {"category":"category"}
+```
