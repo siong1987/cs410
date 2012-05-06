@@ -226,10 +226,10 @@ cl=fisherclassifier(getwords)
 
 @app.route('/')
 def hello():
-  return 'Hello World!'
+  return 'Welcome to CS410 Smarter App!!!'
 
-@app.route('/parse', methods=['POST'])
-def parse():
+@app.route('/parse/link', methods=['POST'])
+def parse_link():
   category = request.form['category']
   link = request.form['link']
   html = urllib.urlopen(link).read()
@@ -237,12 +237,87 @@ def parse():
   cl.train(title, category)
   return '%s' % title
 
-@app.route('/classify/<term>')
-def classify(term):
-  category=cl.classify(term)
-  return 'Category %s' % category
+@app.route('/parse/title', methods=['POST'])
+def parse_title():
+  category = request.form['category']
+  title = request.form['title']
+  cl.train(title, category)
+  return '%s' % title
+
+@app.route('/train/link')
+def train_link():
+  return """
+  <html>
+  <head></head>
+  <body>
+  <form action="/parse/link" method="post">
+  <p>LINK: <input type="text" name="link" size="100" value="" /></p>
+  <p>CATEGORY: <input type="text" name="category" size="100" value="" /></p>
+  <p><input type="submit" value="Submit" /></p>	
+  </form>
+  </body>
+  </html>
+  """
+
+@app.route('/train/title')
+def train_title():
+  return """
+  <html>
+  <head></head>
+  <body>
+  <form action="/parse/title" method="post">
+  <p>TITLE: <input type="text" name="title" size="100" value="" /></p>
+  <p>CATEGORY: <input type="text" name="category" size="100" value="" /></p>
+  <p><input type="submit" value="Submit" /></p>	
+  </form>
+  </body>
+  </html>
+  """
+
+@app.route('/classify/link')
+def classify_link():
+  return """
+  <html>
+  <head></head>
+  <body>
+  <form action="/understand/link" method="post">
+  <p>LINK: <input type="text" name="link" size="100" value="" /></p>
+  <p><input type="submit" value="Submit" /></p>	
+  </form>
+  </body>
+  </html>
+  """
+
+@app.route('/classify/title')
+def classify_title():
+  return """
+  <html>
+  <head></head>
+  <body>
+  <form action="/understand/title" method="post">
+  <p>TITLE: <input type="text" name="title" size="100" value="" /></p>
+  <p><input type="submit" value="Submit" /></p>	
+  </form>
+  </body>
+  </html>
+  """
+
+@app.route('/understand/title', methods=['POST'])
+def understand_title():
+  title = request.form['title']
+  category=cl.classify(title)
+  return '{"category":"%s"}' % category
+
+@app.route('/understand/link', methods=['POST'])
+def understand_link():
+  link = request.form['link']
+  html = urllib.urlopen(link).read()
+  title = Document(html).short_title()
+  category=cl.classify(title)
+  return '"{category":"%s"}' % category
 
 if __name__ == '__main__':
   # Bind to PORT if defined, otherwise default to 5000.
   port = int(os.environ.get('PORT', 5000))
+  app.debug=True
   app.run(host='0.0.0.0', port=port)
