@@ -44,6 +44,12 @@ Bookmark = {
           'url': current.link
         });
       });
+    } else {
+      chrome.bookmarks.create({
+        'parentId': category_node.id,
+        'title': current.title,
+        'url': current.link
+      });
     }
   }
 };
