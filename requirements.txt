@@ -4,3 +4,4 @@ Jinja2==2.6
 SQLAlchemy==0.7.7
 lxml==2.3.4
 readability-lxml==0.2.5
+psycopg2==2.4.4
