@@ -23,6 +23,7 @@ UpdateController = Backbone.View.extend({
     // create the bookmark
     Classifier.trainLink(self.current.title, self.current.category, function() {
       Bookmark.add(self.current);
+      window.close();
     });
   },
 
