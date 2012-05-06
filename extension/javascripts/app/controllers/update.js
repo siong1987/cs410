@@ -2,8 +2,8 @@ UpdateController = Backbone.View.extend({
   current: {},
 
   events: {
-    "click .cancel-button": "cancel",
-    "click .update-button": "update"
+    "click #cancel-button": "cancel",
+    "click #update-button": "update"
   },
 
   initialize: function(cur) {
@@ -12,7 +12,6 @@ UpdateController = Backbone.View.extend({
 
   cancel: function(e) {
     e.preventDefault();
-
     window.close();
   },
 
