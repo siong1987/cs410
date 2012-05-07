@@ -97,7 +97,6 @@ def getwords(doc):
   words=[s.lower() for s in splitter.split(doc) 
           if len(s)>2 and len(s)<20]
   words=[w for w in words if not w in stopwords]
-  app.logger.debug(words)
 
   # Return the unique set of words only
   return dict([(w,1) for w in words])
@@ -366,9 +365,7 @@ def understand_link():
   html = urllib.urlopen(link).read()
   title = Document(html).short_title()
   summary = Document(html).summary()
-  tag = re.compile(r'<.*?>')
-  summary = tag.sub('', summary)
-  category=cl.classify(title + " " + summary)
+  category=cl.classify(title)
   return '{"category":"%s","title":"%s"}' % (category, title)
 
 if __name__ == '__main__':
