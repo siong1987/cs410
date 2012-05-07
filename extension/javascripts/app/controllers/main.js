@@ -10,7 +10,7 @@ MainController = Backbone.View.extend({
     e.preventDefault();
 
     // create the bookmark
-    Classifier.trainLink(self.current.link, self.current.category, function() {
+    Classifier.trainLink(self.current.title, self.current.category, function() {
       Bookmark.add(self.current);
       window.close();
     });
