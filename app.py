@@ -285,10 +285,7 @@ def parse_link():
   link = request.form['link']
   html = urllib.urlopen(link).read()
   title = Document(html).short_title()
-  summary = Document(html).summary()
-  tag = re.compile(r'<.*?>')
-  summary = tag.sub('', summary)
-  cl.train((title + " " + summary), category)
+  cl.train(title, category)
   return '{"title":"%s"}' % title
 
 @app.route('/parse/title', methods=['POST'])
@@ -368,9 +365,7 @@ def understand_link():
   html = urllib.urlopen(link).read()
   title = Document(html).short_title()
   summary = Document(html).summary()
-  tag = re.compile(r'<.*?>')
-  summary = tag.sub('', summary)
-  category=cl.classify(title + " " + summary)
+  category=cl.classify(title)
   return '{"category":"%s","title":"%s"}' % (category, title)
 
 if __name__ == '__main__':
