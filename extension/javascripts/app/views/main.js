@@ -12,9 +12,11 @@ MainView = function(current) {
           </tr>\
         </table>\
         <table class="tb_center_width">\
+          <tr><td class="empty_row"></td></tr>\
           <tr>\
             <td>is categorized as <b>' + current.category + '</b></td>\
           </tr>\
+          <tr><td class="empty_row"></td></tr>\
           <tr>\
             <td>\
               <button type="button" id="no-button" class="btn">No</button>\

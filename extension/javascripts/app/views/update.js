@@ -12,6 +12,7 @@ UpdateView = function() {
           </tr>\
         </table>\
         <table class="tb_center_width">\
+          <tr><td class="empty_row"></td></tr>\
           <tr>\
             <td>\
               <input type="text" class="new-category" placeholder="New Category"/>\

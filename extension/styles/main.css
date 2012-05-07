@@ -26,10 +26,14 @@ body {
 }
 
 .cell_th {
-  padding: 8px;
+  padding: 2px;
   font-weight: bold;
 }
 
 .cell_td {
-  padding: 8px;
+  padding: 2px;
+}
+
+.empty_row {
+  height: 12px;
 }
