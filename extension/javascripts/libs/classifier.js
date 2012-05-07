@@ -12,12 +12,12 @@ Classifier = {
     });
   },
 
-  trainLink: function(title, category, cb) {
+  trainLink: function(link, category, cb) {
     $.ajax({
       type: 'POST',
-      url: 'http://cs410.herokuapp.com/parse/title',
+      url: 'http://cs410.herokuapp.com/parse/link',
       data: {
-        title: title,
+        link: link,
         category: category
       },
       dataType: 'json'
